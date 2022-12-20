@@ -7,7 +7,6 @@ class Category(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır'),
     )
-    id = models.ForeignKey("auth.user", on_delete=models.CASCADE, verbose_name="Kategori Id")
     parent_id = models.TextChoices('Kategori', 'Sağlık Teknoloji Eğitim')
     title = models.CharField(max_length=50, verbose_name="Kategori Başlığı")
     keywords = models.TextField(blank=True, verbose_name="Anahtar Kelimeler")
@@ -24,7 +23,6 @@ class Projeler(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır'),
     )
-    id = models.ForeignKey("auth.User", on_delete=models.CASCADE, verbose_name="Proje Id")
     title = models.CharField(max_length=50, verbose_name="Proje Başlığı")
     keywords = models.TextField(blank=True, verbose_name="Anahtar Kelimeler")
     description = models.TextField(blank=True, verbose_name="Proje Tanımı")
