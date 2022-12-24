@@ -4,6 +4,11 @@
 <div class="jumbotron">
     <h3>Kayıt Ol</h3>
     <hr>
-    <p>Kayıt olma modülü devre dışıdır.</p>
+    
+    <form method="post">
+        {{form.as_p}}
+        <br>
+        <button type="submit" class="btn btn-danger">Kayıt ol</button>
+    </form>
 </div>
 {% endblock body %}
