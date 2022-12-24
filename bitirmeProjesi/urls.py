@@ -22,6 +22,6 @@ urlpatterns = [
     path('', views.index, name= "index"),
     path('about/', views.about, name="about"),
     path('user/', include("user.urls")),
-    path('projects/', views.project, name="projects")
+    path('projects/', include("project.urls"))
     
 ]

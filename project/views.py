@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .forms import ProjectForm
 
 # Create your views here.
 def index(request):
@@ -12,3 +13,10 @@ def detailProject(request,id):
 
 def project(request):
     return render(request, "projects.html")
+
+def dashboard(request):
+    return render(request, "dashboard.html")
+
+def addProject(request):
+    form = ProjectForm()
+    return render(request, "addproject.html", {"form" : form})
