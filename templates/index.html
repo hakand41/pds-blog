@@ -6,6 +6,12 @@
     <h3>Proje Değerlendirme Sistemine Hoşgeldiniz</h3>
     <p>Bu sistemde projeleriniz kullanıcılar tarafından değerlendirilmektedir.</p>
 </div>
-
+<p>
+    {% if request.user.is_authenticated %}
+        Giriş Yapılmış {{request.user.username}}
+    {% else %} 
+        Giriş Yapılmamış
+    {% endif %} 
+</p>
 
 {% endblock body %}

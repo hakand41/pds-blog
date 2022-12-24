@@ -9,3 +9,6 @@ def about(request):
 
 def detailProject(request,id):
     return HttpResponse("Detail:" + str(id))
+
+def project(request):
+    return render(request, "projects.html")
