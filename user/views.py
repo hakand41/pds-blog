@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 
 # Create your views here.
@@ -47,4 +47,7 @@ def loginUser(request):
     return render(request, "login.html", context)
 
 def logoutUser(request):
-    return render(request, "logout.html")
+    logout(request)
+    messages.success(request, "Başarıyla çıkış yapıldı")
+    return redirect("index")
+    
