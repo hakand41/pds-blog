@@ -37,3 +37,14 @@ def addProject(request):
         messages.success(request, "Proje başarıyla eklendi")
         return redirect("index")
     return render(request, "addproject.html", {"form" : form})
+
+def updateProject(request, id):
+    project = get_object_or_404(Projeler, id = id)
+    form = ProjectForm(request.POST or None, request.FILES or None, instance=project)
+    if form.is_valid():
+        project = form.save(commit=False)
+        project.author = request.user
+        project.save()
+        messages.success(request, "Proje başarıyla güncellendi")
+        return redirect("index")
+    return render(request, "update.html", {"form":form})

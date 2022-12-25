@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.project, name = "project"),
     path('dashboard/', views.dashboard, name = "dashboard"),
     path('addproject/', views.addProject, name = "addproject"),
-    path('project/<int:id>', views.detailProject, name="detail")
+    path('project/<int:id>', views.detailProject, name="detail"),
+    path('update/<int:id>', views.updateProject, name="update")
 ]
