@@ -10,7 +10,8 @@ def about(request):
     return render(request, "about.html") 
 
 def detailProject(request,id):
-    return HttpResponse("Detail:" + str(id))
+    projects = Projeler.objects.filter(id = id).first()
+    return render(request, "detail.html", {"projects":projects})
 
 def project(request):
     projects = Projeler.objects.filter()

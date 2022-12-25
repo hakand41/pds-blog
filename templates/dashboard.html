@@ -25,7 +25,7 @@
             {% for project in projects %} 
             <tr>
                 <th scope="row">{{project.id}}</th>
-                <td>{{project.title}}</td>
+                <td><a href="/projects/project/{{project.id}}">{{project.title}}</a></td>
                 <td>{{project.author.username}}</td>
                 <td>{{project.created_at}}</td>
                 <td><a href="/projects/update/{{project.id}}" class="btn btn-danger">Güncelle</a></td>

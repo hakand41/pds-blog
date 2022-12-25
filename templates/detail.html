@@ -1,0 +1,36 @@
+{% extends "layout.html" %} 
+
+{% block body %} 
+<hr>
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Author-->
+        <p class="lead">
+            <strong>{{projects.author.username}}</strong> tarafından oluşturuldu
+        </p>
+        <!-- Post content-->
+        <article>
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <h1 class="fw-bolder mb-1">{{projects.title}}</h1>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">{{projects.created_at}}</div>
+            </header>
+            <!-- Preview image figure-->
+            <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." />{{projects.image}}</figure> 
+            <!-- Post content-->
+            <section class="mb-5">
+                {{projects.detail}}
+                <br>
+                <br>
+                Video Linki: {{projects.videolink}}
+            </section>
+        </article>
+        
+    </div>
+</div>
+</div>
+
+
+{% endblock body %}

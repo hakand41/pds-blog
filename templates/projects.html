@@ -22,7 +22,7 @@
             {% for project in projects %} 
             <tr>
                 <th scope="row">{{project.id}}</th>
-                <td>{{project.title}}</td>
+                <td><a href="/projects/project/{{project.id}}">{{project.title}}</a></td>
                 <td>{{project.author}}</td>
                 <td>{{project.created_at}}</td>
             </tr>
