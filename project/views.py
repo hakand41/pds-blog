@@ -48,3 +48,9 @@ def updateProject(request, id):
         messages.success(request, "Proje başarıyla güncellendi")
         return redirect("index")
     return render(request, "update.html", {"form":form})
+
+def deleteProject(request, id):
+    project = get_object_or_404(Projeler, id = id)
+    project.delete()
+    messages.success(request, "Proje başarıyla silindi")
+    return redirect("index")
