@@ -7,6 +7,37 @@
 <p>Hoşgeldiniz, <small>{{request.user.username}}</small></p>
 <hr>
 <a class = "btn btn-danger" href="/projects/addproject">Proje Ekle</a>
+<hr>
+{% if projects %}
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Güncelle</th>
+            <th scope="col">Sil</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %} 
+            <tr>
+                <th scope="row">{{project.id}}</th>
+                <td>{{project.title}}</td>
+                <td>{{project.author.username}}</td>
+                <td>{{project.created_at}}</td>
+                <td><a href="/projects/update/{{project.id}}" class="btn btn-danger">Güncelle</a></td>
+                <td><a href="/projects/delete/{{project.id}}" class="btn btn-danger">Sil</a></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %} 
+    <div class="alert alert-danger">Henüz bir projeniz bulunmuyor.</div>
+
+{% endif %} 
 
 {% endblock body %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import ProjectForm
 from django.contrib import messages
-
+from .models import Projeler
 # Create your views here.
 def index(request):
     return render(request, "index.html") 
@@ -16,7 +16,11 @@ def project(request):
     return render(request, "projects.html")
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    projects = Projeler.objects.filter(author = request.user)
+    context = {
+        "projects":projects
+    }
+    return render(request, "dashboard.html", context)
 
 def addProject(request):
     form = ProjectForm(request.POST or None)
