@@ -13,7 +13,11 @@ def detailProject(request,id):
     return HttpResponse("Detail:" + str(id))
 
 def project(request):
-    return render(request, "projects.html")
+    projects = Projeler.objects.filter()
+    context = {
+        "projects":projects
+    }
+    return render(request, "projects.html", context)
 
 def dashboard(request):
     projects = Projeler.objects.filter(author = request.user)
