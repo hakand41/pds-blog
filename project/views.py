@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from .forms import ProjectForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -18,5 +19,11 @@ def dashboard(request):
     return render(request, "dashboard.html")
 
 def addProject(request):
-    form = ProjectForm()
+    form = ProjectForm(request.POST or None)
+    if form.is_valid():
+        project = form.save(commit=False)
+        project.author = request.user
+        project.save()
+        messages.success(request, "Proje başarıyla eklendi")
+        return redirect("index")
     return render(request, "addproject.html", {"form" : form})

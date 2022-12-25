@@ -9,9 +9,9 @@ class Faq(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır'),
     )
-    question = models.CharField(max_length=50, blank=True)
-    answer = models.CharField(max_length=50, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS, verbose_name="Durum")
+    question = models.CharField(max_lenghth=50, blank=True)
+    answer = models.CharField(max_lenghth=50, blank=True)
+    status = models.CharField(choices=STATUS, verbose_name="Durum")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Son Güncellenme Tarihi")
 
@@ -28,3 +28,9 @@ class Message(models.Model):
     ip = models.CharField(max_length=20, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Message
+        fields = ['subject', 'comment']

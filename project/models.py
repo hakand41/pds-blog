@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
@@ -23,7 +22,7 @@ class Projeler(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır'),
     )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     keywords = models.CharField(blank=True, max_length=50)
     description = models.CharField(max_length=300, blank=True)
@@ -44,7 +43,7 @@ class Comment(models.Model):
     project = models.ForeignKey(Projeler, on_delete=models.CASCADE)
     comment = models.TextField()
     subject = models.CharField(max_length=50)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    user_id = models.ForeignKey("auth.User", on_delete=models.CASCADE, blank=True)
     status = models.CharField(choices=STATUS, max_length=50)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Son Güncellenme Tarihi")
