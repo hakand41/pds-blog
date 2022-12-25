@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import ProjectForm
 from django.contrib import messages
 from .models import Projeler
@@ -11,6 +11,7 @@ def about(request):
 
 def detailProject(request,id):
     projects = Projeler.objects.filter(id = id).first()
+    #projects = get_object_or_404(Projeler, id = id)
     return render(request, "detail.html", {"projects":projects})
 
 def project(request):
