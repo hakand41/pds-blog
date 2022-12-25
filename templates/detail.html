@@ -18,7 +18,11 @@
                 <div class="text-muted fst-italic mb-2">{{projects.created_at}}</div>
             </header>
             <!-- Preview image figure-->
-            <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." />{{projects.image}}</figure> 
+            {% if projects.image %} 
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{projects.image.url}}" alt="..." /></figure> 
+            {% else %} 
+                <figure class="mb-4"><img class="img-fluid rounded" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.visitizmit.org%2F&psig=AOvVaw3-0T4SM3lLLaE2bB20u5ln&ust=1672088910936000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCICq0N_WlfwCFQAAAAAdAAAAABAI" alt="..."></figure>
+            {% endif %}
             <!-- Post content-->
             <section class="mb-5">
                 {{projects.detail}}

@@ -29,7 +29,7 @@ def dashboard(request):
     return render(request, "dashboard.html", context)
 
 def addProject(request):
-    form = ProjectForm(request.POST or None)
+    form = ProjectForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         project = form.save(commit=False)
         project.author = request.user
