@@ -34,6 +34,8 @@ class Projeler(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ['-created_at']
 
 class Comment(models.Model):
     STATUS = (
@@ -49,6 +51,8 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Son Güncellenme Tarihi")
     def __str__(self):
         return self.subject
+    class Meta:
+        ordering = ['-created_at']
 
 class Image(models.Model):
     title = models.CharField(max_length=30)
