@@ -16,7 +16,7 @@ def detailProject(request,id):
     return render(request, "detail.html", {"projects":projects})
 
 def project(request):
-    projects = Projeler.objects.filter()
+    projects = Projeler.objects.all()
     context = {
         "projects":projects
     }
