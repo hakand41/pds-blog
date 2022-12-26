@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import ProjectForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Projeler
 # Create your views here.
@@ -21,6 +22,7 @@ def project(request):
     }
     return render(request, "projects.html", context)
 
+@login_required(login_url="user:login")
 def dashboard(request):
     projects = Projeler.objects.filter(author = request.user)
     context = {
@@ -28,6 +30,7 @@ def dashboard(request):
     }
     return render(request, "dashboard.html", context)
 
+@login_required(login_url="user:login")
 def addProject(request):
     form = ProjectForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -38,6 +41,7 @@ def addProject(request):
         return redirect("index")
     return render(request, "addproject.html", {"form" : form})
 
+@login_required(login_url="user:login")
 def updateProject(request, id):
     project = get_object_or_404(Projeler, id = id)
     form = ProjectForm(request.POST or None, request.FILES or None, instance=project)
@@ -49,6 +53,7 @@ def updateProject(request, id):
         return redirect("index")
     return render(request, "update.html", {"form":form})
 
+@login_required(login_url="user:login")
 def deleteProject(request, id):
     project = get_object_or_404(Projeler, id = id)
     project.delete()
