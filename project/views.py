@@ -16,6 +16,10 @@ def detailProject(request,id):
     return render(request, "detail.html", {"projects":projects})
 
 def project(request):
+    keyword = request.GET.get("keyword")
+    if keyword:
+        projects = Projeler.objects.filter(title__contains = keyword)
+        return render(request, "projects.html", {"projects":projects})
     projects = Projeler.objects.all()
     context = {
         "projects":projects

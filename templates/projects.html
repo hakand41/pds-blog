@@ -5,6 +5,12 @@
 <div class="jumbotron text-center">
     <h2>Projeler Aşağıdadır<h2>
 </div>
+<div class="jumbotron text-center">
+    <form>
+        <input type="text" name="keyword" class="input-sm">
+        <button type="submit" class="btn btn-danger">Ara</button>
+    </form>    
+</div>
 
 <div class="jumbotron text-center" class="alert-success">
     {% if projects %}
@@ -31,7 +37,7 @@
         </tbody>
     </table>
 {% else %} 
-    <div class="alert alert-danger">Henüz bir projen bulunmuyor.</div>
+    <div class="alert alert-danger">Henüz bir proje bulunmuyor.</div>
 
 {% endif %}
 </div>
