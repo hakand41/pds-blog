@@ -1,8 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Projeler
+from .models import Projeler, Comment
 # Create your views here.
 def index(request):
     return render(request, "index.html") 
@@ -13,7 +13,8 @@ def about(request):
 def detailProject(request,id):
     projects = Projeler.objects.filter(id = id).first()
     #projects = get_object_or_404(Projeler, id = id)
-    return render(request, "detail.html", {"projects":projects})
+    comments = projects.comments.all()
+    return render(request, "detail.html", {"projects":projects, "comments":comments})
 
 def project(request):
     keyword = request.GET.get("keyword")
@@ -63,3 +64,14 @@ def deleteProject(request, id):
     project.delete()
     messages.success(request, "Proje başarıyla silindi")
     return redirect("index")
+
+@login_required(login_url="user:login")
+def addComment(request, id):
+    project = get_object_or_404(Projeler, id = id)
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        comment = request.POST.get("comment")
+        newComment = Comment(subject = subject, comment = comment, user_id = request.user)
+        newComment.project = project
+        newComment.save()
+    return redirect("/projects/project/" + str(id))

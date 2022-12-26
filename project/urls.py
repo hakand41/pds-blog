@@ -10,5 +10,6 @@ urlpatterns = [
     path('addproject/', views.addProject, name = "addproject"),
     path('project/<int:id>', views.detailProject, name="detail"),
     path('update/<int:id>', views.updateProject, name="update"),
-    path('delete/<int:id>', views.deleteProject, name="delete")
+    path('delete/<int:id>', views.deleteProject, name="delete"),
+    path('comment/<int:id>', views.addComment, name="comment")
 ]

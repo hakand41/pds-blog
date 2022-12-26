@@ -32,7 +32,45 @@
         
     </div>
 </div>
+<div class="card my-4">
+    <h5 class="card-header">Yorum yapın</h5>
+    <div class="card-body">
+        <form method="post" action="/projects/comment/{{projects.id}}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="formGroupExampleInput">Konu</label>
+                <input name="subject" type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+              </div>
+
+            <div class="form-group">
+                <label for="formGroupExampleInput">Yorum</label>
+                <textarea name="comment" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Yorum Yap</button>
+        </form>
+        <hr>
+        <h4>Yorumlar</h4>
+        {% if comments %} 
+            {% for comment in comments %}
+            <div class="d-flex">
+                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                <div class="ms-3">
+                    <div class="fw-bold">Oluşturulma Tarihi : {{comment.created_at}}</div>
+                    <div class="fw-bold">Yazar : {{comment.user_id}}</div>
+                    <div class="fw-bold">Konu : {{comment.subject}}</div>
+                    {{comment.comment}}
+                    <hr>
+                </div>
+                
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-danger">Bu projeye henüz bir yorum yapılmamıştır</div> 
+        {% endif %}
+    </div>
 </div>
+</div>
+
 
 
 {% endblock body %}

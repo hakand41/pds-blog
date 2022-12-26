@@ -40,7 +40,7 @@ class Comment(models.Model):
         ('True', 'Evet'),
         ('False', 'Hayır'),
     )
-    project = models.ForeignKey(Projeler, on_delete=models.CASCADE)
+    project = models.ForeignKey(Projeler, on_delete=models.CASCADE, related_name="comments")
     comment = models.TextField()
     subject = models.CharField(max_length=50)
     user_id = models.ForeignKey("auth.User", on_delete=models.CASCADE, blank=True)
