@@ -11,7 +11,17 @@
         Giriş Yapılmış {{request.user.username}}
     {% else %} 
         Giriş Yapılmamış
-    {% endif %} 
+    {% endif %}
+    {% if projects %} 
+        {% for project in projects %} 
+            <div class="jumbotron text-center">
+                <h3><a href="/projects/project/{{project.id}}">{{project.title}}</a></strong></h3>
+            </div>
+        {% endfor %}
+    {% else %}
+    <hr>
+        <div class="jumbotron text-center">Proje bulunmamaktadır.</div>
+    {% endif %}
 </p>
 
 {% endblock body %}
